@@ -8,6 +8,9 @@ import springfox.documentation.spring.web.SpringfoxWebMvcConfiguration;
 import springfox.documentation.spring.web.json.JacksonModuleRegistrar;
 import springfox.documentation.swagger2.configuration.Swagger2JacksonModule;
 
+/**
+ * Re-implement Swagger2DocumentationConfiguration to exclude "springfox.documentation.swagger2.web"
+ */
 @Configuration
 @Import({SpringfoxWebMvcConfiguration.class, MySwaggerCommonConfiguration.class})
 @ComponentScan(basePackages = {
