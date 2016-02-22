@@ -18,19 +18,9 @@ import springfox.documentation.swagger2.configuration.Swagger2JacksonModule;
 //        "springfox.documentation.swagger2.web",
         "springfox.documentation.swagger2.mappers"
 })
-public class Swagger2Config {
+public class MySwagger2DocumentationConfiguration {
     @Bean
     public JacksonModuleRegistrar swagger2Module() {
         return new Swagger2JacksonModule();
-    }
-
-    @Bean
-    public Swagger2Endpoint swagger2Endpoint() {
-        return new Swagger2Endpoint();
-    }
-
-    @Bean
-    public Swagger2MvcEndpoint swagger2MvcEndpoint(Swagger2Endpoint swagger2Endpoint) {
-        return new Swagger2MvcEndpoint(swagger2Endpoint);
     }
 }
