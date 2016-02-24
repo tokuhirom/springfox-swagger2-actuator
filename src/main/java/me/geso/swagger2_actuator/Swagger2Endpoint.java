@@ -1,4 +1,4 @@
-package com.example.config;
+package me.geso.swagger2_actuator;
 
 import org.springframework.boot.actuate.endpoint.AbstractEndpoint;
 import org.springframework.boot.actuate.endpoint.Endpoint;

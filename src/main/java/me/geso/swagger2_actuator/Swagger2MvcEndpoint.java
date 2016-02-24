@@ -1,10 +1,12 @@
-package com.example.config;
+package me.geso.swagger2_actuator;
 
 import com.google.common.base.Optional;
 import io.swagger.models.Swagger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.actuate.endpoint.mvc.AbstractEndpointMvcAdapter;
 import org.springframework.boot.actuate.endpoint.mvc.MvcEndpoint;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +29,13 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 public class Swagger2MvcEndpoint extends AbstractEndpointMvcAdapter
         implements MvcEndpoint {
+    @Value("${swagger2_actuator.access_control_allow_origin}")
+    private String accessControlAllowOrigin;
+
+    // Access-Control-Allow-Headers
+    @Value("${swagger2_actuator.access_control_allow_headers}")
+    private String accessControlAllowHeaders;
+
     @Autowired
     private DocumentationCache documentationCache;
 
@@ -57,7 +66,14 @@ public class Swagger2MvcEndpoint extends AbstractEndpointMvcAdapter
         if (isNullOrEmpty(swagger.getHost())) {
             swagger.host(hostName(servletRequest));
         }
-        return new ResponseEntity<Json>(jsonSerializer.toJson(swagger), HttpStatus.OK);
+        HttpHeaders httpHeaders = new HttpHeaders();
+        if (accessControlAllowOrigin != null) {
+            httpHeaders.add("Access-Control-Allow-Origin", accessControlAllowOrigin);
+        }
+        if (accessControlAllowHeaders != null) {
+            httpHeaders.add("Access-Control-Allow-Headers", accessControlAllowHeaders);
+        }
+        return new ResponseEntity<Json>(jsonSerializer.toJson(swagger), httpHeaders, HttpStatus.OK);
     }
 
     private String hostName(HttpServletRequest servletRequest) {
