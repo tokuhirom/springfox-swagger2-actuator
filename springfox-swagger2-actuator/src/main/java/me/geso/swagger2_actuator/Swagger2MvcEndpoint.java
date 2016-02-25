@@ -29,11 +29,11 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 public class Swagger2MvcEndpoint extends AbstractEndpointMvcAdapter
         implements MvcEndpoint {
-    @Value("${swagger2_actuator.access_control_allow_origin}")
+    @Value("${springfox_swagger2_actuator.access_control_allow_origin}")
     private String accessControlAllowOrigin;
 
     // Access-Control-Allow-Headers
-    @Value("${swagger2_actuator.access_control_allow_headers}")
+    @Value("${springfox_swagger2_actuator.access_control_allow_headers}")
     private String accessControlAllowHeaders;
 
     @Autowired
