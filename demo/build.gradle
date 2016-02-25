@@ -1,0 +1,26 @@
+apply plugin: 'java'
+apply plugin: 'application'
+apply plugin: 'maven'
+
+mainClassName = 'com.example.SpringfoxSpringbootActuatorDemoApplication'
+
+repositories {
+    jcenter()
+    mavenCentral()
+    mavenLocal()
+}
+
+jar {
+    baseName = 'demo'
+    version = '0.0.1-SNAPSHOT'
+}
+
+dependencies {
+    def bootVersion = '1.3.2.RELEASE'
+
+    compile("org.springframework.boot:spring-boot-starter-actuator:${bootVersion}")
+    compile("org.springframework.boot:spring-boot-actuator-docs:${bootVersion}")
+    compile("org.springframework.boot:spring-boot-starter-web:${bootVersion}")
+    compile('org.projectlombok:lombok:1.16.6')
+    compile project(':springfox-swagger2-actuator')
+}
