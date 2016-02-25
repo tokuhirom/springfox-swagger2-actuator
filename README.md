@@ -48,7 +48,7 @@ public class SpringfoxSpringbootActuatorDemoApplication {
 }
 ```
 
-For more details, please look springfox's document: https://github.com/springfox/springfox
+For more details, please look springfox's document: http://springfox.github.io/springfox/docs/current/
 
 ## Configuration Properties
 
